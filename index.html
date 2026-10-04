@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinay ♥ Nandini Wedding Invitation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Yatra+One&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa7c11;
+            --kashi-dawn-bg: #120907;
+            --kashi-crimson: #4a1204;
+            --kashi-orange: #e65c00;
+            --kashi-amber: #f9d423;
+            --text-light: #f7f5f0;
+            --text-muted: #c7bda8;
+            --font-royal: 'Cinzel Decorative', serif;
+            --font-serif: 'Cinzel', serif;
+            --font-sanskrit: 'Yatra One', cursive;
+            --font-body: 'Montserrat', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--kashi-dawn-bg);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar completely while loading */
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Global Background Animation Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+		
+
+        /* Ambient Glow Layer */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 30%, rgba(230, 92, 0, 0.15) 0%, rgba(74, 18, 4, 0.2) 50%, rgba(18, 9, 7, 1) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Main Content wrapper */
+        #main-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Premium Cinematic Preloader Sequence */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #080302;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            perspective: 1200px;
+			background-image: url('https://wedence.in/assets/kashi/backgrounds/kashi-env-05-quiet-balcony.webp');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .preloader-container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .mantra-fade {
+            font-family: var(--font-sanskrit);
+            color: var(--gold-primary);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            transition: all 1.2s ease;
+        }
+
+        .ganesh-artwork {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: scale(0.8) rotateY(90deg);
+            transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 12px var(--kashi-orange));
+        }
+
+        /* SVG Mandala Border / Envelope Card Design */
+        .envelope-card {
+            background: linear-gradient(135deg, #2b0b03 0%, #170501 100%);
+            border: 2px solid var(--gold-primary);
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.2);
+            opacity: 0;
+            transform: translateY(100px) rotateX(-20px);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .envelope-card::before {
+            content: '';
+            position: absolute;
+            top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            pointer-events: none;
+        }
+
+        .preloader-names {
+            font-family: var(--font-royal);
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .preloader-weds {
+            font-family: var(--font-serif);
+            font-style: bold;
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .btn-enter-experience {
+            background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            color: #120907;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            padding: 0.8rem 2.2rem;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(20px);
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .btn-enter-experience:hover {
+            transform: translateY(-2px) scale(1.10);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.7);
+            background: linear-gradient(90deg, var(--gold-primary) 0%, var(--gold-light) 50%, var(--gold-primary) 100%);
+        }
+
+        /* Decorative Dividers & Borders */
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            width: 80%;
+            max-width: 300px;
+        }
+        .gold-divider::before, .gold-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+        .gold-divider i {
+            color: var(--gold-primary);
+            margin: 0 10px;
+            font-size: 0.9rem;
+            filter: drop-shadow(0 0 5px var(--gold-primary));
+        }
+
+        /* Music Controls & Floating Audio Button */
+        .audio-control-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .btn-audio {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--kashi-crimson) 0%, #120907 100%);
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(212,175,55,0.3);
+            transition: var(--transition-smooth);
+        }
+        .btn-audio:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.6);
+        }
+        .audio-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid var(--gold-primary);
+            animation: pulse-ring 2s infinite ease-in-out;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Custom Reveal Animation CSS Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section Layouts & Styles */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .section-ornament {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+        }
+
+        .section-title {
+            font-family: var(--font-royal);
+            font-size: 2.8rem;
+            color: var(--gold-light);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--kashi-amber);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            padding-top: 4rem;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(18,9,7,0.3) 0%, rgba(74,18,4,0.4) 60%, rgba(18,9,7,0.9) 100%);
+        }
+
+        .hero-mandala-bg {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 700px;
+            height: 700px;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: slow-rotate 40s infinite linear;
+        }
+
+        @keyframes slow-rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-names {
+            font-family: var(--font-royal);
+            font-size: 4.5rem;
+            background: linear-gradient(to right, #fff 10%, var(--gold-light) 40%, var(--gold-primary) 60%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 2rem 0;
+            line-height: 1.2;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.6));
+        }
+
+        .hero-date-location {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            margin-top: 1.5rem;
+        }
+
+        /* Kashi Blessings Immersive Experience Section */
+        #kashi-blessings {
+            background: linear-gradient(to bottom, rgba(18,9,7,0.9) 0%, #2b0b03 40%, #4a1204 70%, rgba(18,9,7,0.95) 100%);
+            min-height: 90vh;
+            position: relative;
+        }
+
+        .sanskrit-verse-card {
+            background: rgba(18, 9, 7, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            max-width: 750px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(212,175,55,0.05);
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .sanskrit-verse-card::after {
+            content: '';
+            position: absolute;
+            top: 10px; bottom: 10px; left: 10px; right: 10px;
+            border: 1px dashed rgba(212, 175, 55, 0.15);
+            pointer-events: none;
+        }
+
+        .verse-text {
+            font-family: var(--font-sanskrit);
+            font-size: 1.8rem;
+            color: var(--kashi-amber);
+            line-height: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(249,212,35,0.3);
+        }
+		
+		.verse-text1 {
+            font-family: var(--font-sanskrit);
+            font-size: 1.0rem;
+            color: var(--kashi-amber);
+            line-height: 1.8rem;
+			margin-top: 0.5rem;
+            margin-bottom: 1.0rem;
+            text-shadow: 0 0 10px rgba(249,212,35,0.3);
+        }
+
+        .verse-translation {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.6rem;
+        }
+
+        /* River Ganga Water Simulation Container */
+        .ganga-river-container {
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(230,92,0,0.2), transparent);
+        }
+
+        .river-wave {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 100%;
+            background-repeat: repeat-x;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.3;
+        }
+
+        .river-wave-1 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,100 350,20 500,60 C650,100 850,20 1000,60 C1150,100 1300,20 1450,60 L1450,120 L0,120 Z" fill="%23e65c00"/></svg>');
+            animation: wave-movement 15s linear infinite;
+            z-index: 2;
+        }
+
+        .river-wave-2 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,50 C200,20 300,80 500,50 C700,20 800,80 1000,50 C1200,20 1300,80 1500,50 L1500,120 L0,120 Z" fill="%234a1204"/></svg>');
+            animation: wave-movement 22s linear infinite;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        @keyframes wave-movement {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Invitation Box / Details Grid */
+        .invitation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 2rem;
+        }
+
+        .luxury-card {
+            background: linear-gradient(180deg, rgba(43, 11, 3, 0.8) 0%, rgba(18, 9, 7, 0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 4px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 20px 45px rgba(212,175,55,0.15);
+        }
+
+        .luxury-card::before {
+            content: '';
+            position: absolute;
+            top: 10px; bottom: 10px; left: 10px; right: 10px;
+            border: 1px dashed rgba(212, 175, 55, 0.1);
+            pointer-events: none;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 5px rgba(212,175,55,0.4));
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .card-detail-text {
+            font-size: 0.95rem;
+            line-height: 1.7rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-card-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            padding: 0.6rem 1.6rem;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-card-action:hover {
+            background: var(--gold-primary);
+            color: #120907;
+            box-shadow: 0 0 15px rgba(212,175,55,0.4);
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(43, 11, 3, 0.5);
+            border: 1px solid rgba(212,175,55,0.2);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .countdown-val {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .countdown-lbl {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Cinematic Image Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1100px;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            aspect-ratio: 4/5;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .gallery-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1f0702, #4a1204);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--gold-light);
+            font-family: var(--font-serif);
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .gallery-img-placeholder i {
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .gallery-item:hover .gallery-img-placeholder {
+            transform: scale(1.06);
+            background: linear-gradient(45deg, #380d04, #611806);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(18,9,7,0.9), transparent);
+            opacity: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 2rem;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+        }
+
+        /* Luxury RSVP Form */
+        .rsvp-form-container {
+            width: 100%;
+            max-width: 650px;
+            background: linear-gradient(135deg, rgba(43, 11, 3, 0.9) 0%, rgba(18, 9, 7, 0.98) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            padding: 3.5rem 2.5rem;
+            box-shadow: 0 25px 55px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: var(--gold-primary);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 0.8rem;
+            left: 0;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            font-size: 1rem;
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            top: -1.2rem;
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+        }
+
+        .form-radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .radio-label input {
+            accent-color: var(--gold-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-submit-rsvp {
+            width: 100%;
+            background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            color: #120907;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            padding: 1rem;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: var(--transition-smooth);
+            margin-top: 1rem;
+        }
+
+        .btn-submit-rsvp:hover {
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(90deg, var(--gold-primary) 0%, var(--gold-light) 50%, var(--gold-primary) 100%);
+        }
+
+        /* Footer Aesthetics */
+        footer {
+            background-color: #0c0402;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--gold-primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-hashtag {
+            font-family: var(--font-royal);
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-blessing {
+            font-family: var(--font-sanskrit);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Lightbox styling */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(8, 3, 2, 0.95);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            max-width: 85%;
+            max-height: 80%;
+            border: 2px solid var(--gold-primary);
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+            background: #2b0b03;
+            padding: 3rem;
+            border-radius: 4px;
+            text-align: center;
+            color: var(--gold-light);
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px; right: 30px;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .lightbox-close:hover {
+            color: var(--gold-primary);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .hero-names { font-size: 3rem; }
+            .hero-mandala-bg { width: 450px; height: 450px; }
+            .mantra-fade { font-size: 1.6rem; }
+            .envelope-card { padding: 2rem 1.2rem; }
+            .countdown-box { width: 75px; height: 75px; }
+            .countdown-val { font-size: 1.4rem; }
+            section { padding: 5rem 1.2rem; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+<!-- ROYAL CURTAIN -->
+<div id="curtain-wrapper" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:999999;
+pointer-events:none;
+">
+ 
+<!-- Golden Rod -->
+<div style="
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:14px;
+background:linear-gradient(to right,#b8860b,#fff8c9,#d4af37,#fff8c9,#b8860b);
+z-index:20;
+">
+</div>
+ 
+<!-- Hanging Flowers -->
+<div style="
+position:absolute;
+top:14px;
+left:0;
+width:100%;
+z-index:50;
+display:flex;
+justify-content:space-evenly;
+">
+ 
+<div class="garland"></div>
+<div class="garland"></div>
+<div class="garland"></div>
+<div class="garland"></div>
+<div class="garland"></div>
+<div class="garland"></div>
+ 
+</div>
+ 
+<!-- Left Curtain -->
+<div id="curtain-left" style="
+position:absolute;
+top:0;
+left:0;
+width:50%;
+height:100%;
+background:
+repeating-linear-gradient(
+90deg,
+#320000 0px,
+#510400 25px,
+#720000 50px,
+#510400 75px
+);
+border-right:4px solid #d4af37;
+box-shadow:inset -15px 0 40px rgba(0,0,0,.55);
+transition:transform 2.8s ease-in-out;
+">
+</div>
+ 
+<!-- Right Curtain -->
+<div id="curtain-right" style="
+position:absolute;
+top:0;
+right:0;
+width:50%;
+height:100%;
+background:
+repeating-linear-gradient(
+90deg,
+#320000 0px,
+#510400 25px,
+#720000 50px,
+#510400 75px
+);
+border-left:4px solid #d4af37;
+box-shadow:inset 15px 0 40px rgba(0,0,0,.55);
+transition:transform 2.8s ease-in-out;
+">
+</div>
+ 
+</div>
+ 
+<style>
+ 
+.garland{
+position:relative;
+width:8px;
+height:150px;
+background:#2e7d32;
+}
+ 
+.garland:before{
+content:'';
+position:absolute;
+left:-10px;
+top:35px;
+width:28px;
+height:28px;
+background:#ffcc00;
+border-radius:50%;
+box-shadow:
+0 28px #ffcc00,
+0 56px #ffcc00,
+0 84px #ffcc00;
+}
+ 
+.garland:after{
+content:'';
+position:absolute;
+left:-8px;
+top:20px;
+width:24px;
+height:24px;
+background:#c70039;
+border-radius:50%;
+box-shadow:
+0 56px #c70039,
+0 112px #c70039;
+}
+ 
+</style>
+ 
+<script>
+window.addEventListener("load",function(){
+ 
+setTimeout(function(){
+ 
+document.getElementById("curtain-left")
+.style.transform="translateX(-100%)";
+ 
+document.getElementById("curtain-right")
+.style.transform="translateX(100%)";
+ 
+},800);
+ 
+setTimeout(function(){
+ 
+const curtain=document.getElementById("curtain-wrapper");
+ 
+curtain.style.transition="opacity 1s ease";
+curtain.style.opacity="0";
+ 
+setTimeout(function(){
+curtain.remove();
+},1000);
+ 
+},4200);
+ 
+});
+</script>
+
+    <!-- Global Background Particle/Aesthetic Layers Canvas -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="ambient-glow"></div>
+	
+
+    <!-- 1. PREMIUM LOADING SEQUENCE -->
+    <div id="preloader">
+        <div class="preloader-container">
+            <!-- Sanskrit Mantra Reveal -->
+            <!-- Semi Circular Ganesh Mantra -->
+<div id="preloader-mantra"
+style="
+display:flex;
+width:220px;
+height:150px; /* was 200px */
+margin:0 auto -25px; /* pulls image upward */
+opacity:5;
+transform:translateY(20px);
+transition:all 1.2s ease;
+">
+ 
+<svg width="220" height="200" viewBox="0 0 220 80">
+<defs>
+<path
+id="ganeshArc"
+d="M 25 70 A 85 85 0 0 1 195 70" />
+</defs>
+ 
+<text
+fill="#510400"
+font-size="30"
+font-weight="700"
+font-family="'Yatra One', cursive"
+stroke="#FFD700" 
+               stroke-width="0.2px" 
+                  stroke-linejoin="round"
+                  filter="url(#ganesh-glow)" 
+                  text-anchor="middle">
+ 
+<textPath
+href="#ganeshArc"
+startOffset="50%"
+text-anchor="middle">
+ 
+॥ श्री गणेशाय नमः ॥
+ 
+</textPath>
+</text>
+</svg>
+ 
+</div>
+			<img id="preloader-ganesh"
+src="https://cdn.pixabay.com/photo/2024/05/11/07/24/ganesh-8754174_1280.jpg"
+alt="Lord Ganesha"
+style="
+display:flex;
+margin:-35px auto 0; /* was -20px */
+width:120px;
+max-width:50vw;
+margin-bottom:40px;
+border:6px solid #d4af37;
+border-radius:18px;
+box-shadow:0 0 20px rgba(212,175,55,0.6);
+background:#fff;
+padding:6px;">
+                <!--<p class="verse-text1">
+                    वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । <br>
+                    निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+                </p>-->
+          
+
+            <!-- Royal Invitation Envelope/Card Component <!--color:#B19CD9;-->
+			
+            <div id="preloader-card">
+                <div class="preloader-names" id="load-groom-name" 
+				style="
+color:#510400;
+font-weight:700;
+font-size: 3.5rem;
+-webkit-text-stroke:0.7px #FFD700;
+text-shadow:
+0 0 5px rgba(255,215,0,0.9),
+0 0 10px rgba(255,215,0,0.8),
+0 0 20px rgba(255,215,0,0.7),
+0 0 35px rgba(255,215,0,0.6),
+2px 2px 6px rgba(0,0,0,0.5);"></div>
+                <div class="preloader-weds" style="font-weight:bold; font-size: 1.2rem;">weds</div>
+                <div class="preloader-names" id="load-bride-name"
+				style="
+color:#510400;
+font-weight:700;
+font-size: 3.5rem;
+-webkit-text-stroke:0.7px #FFD700;
+text-shadow:
+0 0 5px rgba(255,215,0,0.9),
+0 0 10px rgba(255,215,0,0.8),
+0 0 20px rgba(255,215,0,0.7),
+0 0 35px rgba(255,215,0,0.6),
+2px 2px 6px rgba(0,0,0,0.5);"></div>
+
+                
+                <button class="btn-enter-experience" id="btn-explore" style="font-weight:bold; color:#510400;">Open Invitation</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Audio Control Widget -->
+    <div class="audio-control-container">
+        <button class="btn-audio" id="audio-toggle-btn" aria-label="Toggle Ambient Audio">
+            <div class="audio-pulse"></div>
+            <i class="fa-solid fa-music"></i>
+        </button>
+    </div>
+
+    <!-- MAIN LUXURY MICROSITE EXPERIENTIAL CONTENT -->
+    <div id="main-content">
+	
+	    <!-- KASHI BLESSINGS IMMERSIVE ATMOSPHERIC HIGHLIGHT -->
+        <section id="kashi-blessings" style="margin-top:-100px;">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23d4af37'><circle cx='50' cy='50' r='30' stroke='%23d4af37' stroke-width='1'/><path d='M50 10 L50 90 M10 50 L90 50' stroke='%23d4af37' stroke-width='0.5'/></svg>" class="section-ornament" alt="Sacred Mandala Element">
+            
+            <h2 class="section-title">Kashi Blessings</h2>
+			<!--<div class="section-subtitle">Divine Grace of Eternal Varanasi</div>-->
+		
+			
+			 <div class="sanskrit-verse-card reveal-on-scroll">
+                <div class="verse-text">
+                    मङ्गलम् भगवान विष्णुः, मङ्गलम् गरुडध्वजः।<br>
+                    मङ्गलम् पुण्डरीकाक्षः, मङ्गलाय तनो हरिः॥
+                </div>
+            </div>
+			
+            <div class="section-subtitle" style="font-weight:bold;">Under the Divine Blessings of Kashi Vishwanath and sacred spirit of Kashi, we delighted to invite you to celebrate our wedding festivities.</div>
+			
+			<div style="text-align:center; margin:-20px 0 30px; font-size:42px; color:#d4af37; ">
+ 🔱 
+</div>
+
+
+            <!-- Ganga River Layer Simulation Framework -->
+            <div class="ganga-river-container">
+                <div class="river-wave river-wave-1"></div>
+                <div class="river-wave river-wave-2"></div>
+            </div>
+        </section>
+	
+        
+        <!-- HERO ENTRY SCENE -->
+        <section id="hero">
+            <!-- Interactive Rotating Mandala Watermark -->
+            <svg class="hero-mandala-bg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" stroke="#d4af37" stroke-width="0.5" stroke-dasharray="2 2"/>
+                <circle cx="50" cy="50" r="35" stroke="#d4af37" stroke-width="0.3"/>
+                <path d="M50 5 L53 20 L65 10 L58 24 L75 20 L63 30 L85 35 L67 40 L90 50 L68 53 L85 65 L63 58 L75 75 L58 63 L65 90 L53 68 L50 95 L47 68 L35 90 L42 63 L25 75 L37 58 L15 65 L32 53 L10 50 L32 40 L15 35 L37 30 L25 20 L42 24 L35 10 L47 20 Z" stroke="#d4af37" stroke-width="0.5"/>
+            </svg>
+
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23d4af37'><path d='M50 15 C40 25 45 40 50 50 C55 40 60 25 50 15 Z'/></svg>" class="section-ornament" alt="Lotus Motif">
+			
+            
+            <p style="font-family: var(--font-serif); font-weight:bold; letter-spacing: 4px; color: var(--gold-primary); text-transform: uppercase; font-size: 1.0rem;">
+                Some beginning deserve to be celebrated with everyone who makes life beautiful
+            </p>
+            
+            <h1 class="hero-names" style="margin-top:180px;">
+                <span id="hero-groom"></span> <br>
+                <span style="font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; color: var(--text-muted); -webkit-text-fill-color: initial;">&amp;</span> <br>
+                <span id="hero-bride"></span>
+            </h1>
+
+            <div class="gold-divider">
+                <i class="fa-solid fa-gopuram"></i>
+            </div>
+
+            <div class="hero-date-location">
+                <div id="hero-date" style="font-weight: 600; color: var(--gold-light);"></div>
+                <div id="hero-venue" style="font-size: 1.1rem; margin-top: 8px; color: var(--text-muted); letter-spacing: 2px;"></div>
+            </div>
+
+            <!-- Countdown Dynamic Component Container -->
+            <div class="countdown-container reveal-on-scroll">
+                <div class="countdown-box">
+                    <span class="countdown-val" id="days">00</span>
+                    <span class="countdown-lbl">Days</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-val" id="hours">00</span>
+                    <span class="countdown-lbl">Hrs</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-val" id="minutes">00</span>
+                    <span class="countdown-lbl">Mins</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-val" id="seconds">00</span>
+                    <span class="countdown-lbl">Secs</span>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- SACRED ITINERARY / TIMELINE AND VENUE -->
+        <section id="celebrations">
+            <i class="fa-solid fa-calendar-days section-ornament" style="font-size: 2.5rem; text-align: center; color: var(--gold-primary);"></i>
+            <h2 class="section-title">The Ceremonies</h2>
+            <div class="section-subtitle">Witness Our Sacred Rituals</div>
+
+            <div class="invitation-grid">
+                <!-- Ceremony Card 1 -->
+                <div class="luxury-card reveal-on-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                    <h3 class="card-title">Haldi☀️</h3>
+                    <p class="card-detail-text" style="font-weight:bold;">
+                        Bathed in the golden glow of Haldi, we seek divine blessings for happiness, harmony, and a radiant beginning to our lifelong union.
+                    </p>
+                    <div style="color: var(--gold-light); font-family: var(--font-serif); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight:bold;">
+                        <i class="fa-regular fa-clock" style="margin-right: 6px; font:bold; "></i> 19<sup>th</sup> November 2026 • 6:00 PM Onwards<br>
+At Our Residence, Varanasi
+                    </div>
+                </div>
+
+                <!-- Ceremony Card 2 -->
+                <div class="luxury-card reveal-on-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-hands-praying"></i></div>
+                    <h3 class="card-title" >Mehandi💃</h3>
+                    <p class="card-detail-text" style="font-weight:bold;">
+                        Embracing the sacred beauty of Mehendi, we seek divine blessings for love, prosperity, and a harmonious union that will flourish through the years.
+                    </p>
+                    <div style="color: var(--gold-light); font-family: var(--font-serif); margin-bottom: 1.5rem; font-size: 0.9rem;font-weight:bold;">
+                        <i class="fa-regular fa-clock" style="margin-right: 6px;"></i>20<sup>th</sup> November 2026 • 6:00 PM Onwards<br>
+At Our Residence, Varanasi
+                    </div>
+                </div>
+
+                <!-- Venue Detail Card -->
+                <div class="luxury-card reveal-on-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-gopuram"></i></div>
+                    <h3 class="card-title">The Wedding💏<h3>
+                    <p class="card-detail-text" id="card-venue-details">
+					Bound by sacred vows and blessed by divine grace, we celebrate the union of hearts destined to walk life's journey as one.
+                        <!-- Filled dynamically-->
+                    </p>
+					 <div style="color: var(--gold-light); font-family: var(--font-serif); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                        <i class="fa-regular fa-clock" style="margin-right: 6px;"></i> 21<sup>st</sup> November 2026 • 7:00 PM Onwards
+                    </div>
+                    <a href="https://www.google.com/maps/place/Govind+nagar+colony/@25.2412139,82.9773575,3a,75y,90t/data=!3m8!1e2!3m6!1sCIABIhDk4SUJkXfoHb1LP3R72d-D!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FANWiy9TrRn97RkReO4QUobcPKf2kRdkJzy2Y8H1H_O9PwGzWOvI2BMHG0cMaLdNXYSfWGDMeO5WyUy09yvtCUdC4V_gkZ0d3tVfexwtZE5-dhkw6uK9u46mAewt3WjcS8TH1sHkZNQ-M9A-MlcuM%3Dw203-h238-k-no!7i1278!8i1500!4m7!3m6!1s0x398e33791288dbbb:0x211a049401f916e8!8m2!3d25.2412139!4d82.9773575!10e5!16s%2Fg%2F11sj9jgkn6?entry=ttu&g_ep=EgoyMDI2MDkyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-card-action" id="btn-map-directions">
+                        <i class="fa-solid fa-map-location-dot"></i> View Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CINEMATIC MEMORIES / ALBUM GALLERY OVERVIEW -->
+        <!--<section id="gallery">
+            <i class="fa-solid fa-dharma-wheel section-ornament" style="font-size: 2.5rem; text-align: center; color: var(--gold-primary);"></i>
+            <h2 class="section-title">Our Chronicles</h2>
+            <div class="section-subtitle">Glimpses of Love & Devotion</div>
+
+            <div class="gallery-grid">-->
+                <!-- Interactive Grid Items using CSS Placeholders mimicking cinematic frames -->
+                <!--<div class="gallery-item reveal-on-scroll" onclick="openLightbox('Pre-Wedding Rituals')">
+                    <div class="gallery-img-placeholder">
+                        <i class="fa-solid fa-ring"></i>
+                        <span>Engagement</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span>View Moment</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-on-scroll" onclick="openLightbox('Kashi Pre-Wedding Session')">
+                    <div class="gallery-img-placeholder">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span>Kashi Diaries</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span>View Moment</span>
+                    </div>
+                </div>
+                <div class="gallery-item reveal-on-scroll" onclick="openLightbox('Haldi & Sangeet Utsav')">
+                    <div class="gallery-img-placeholder">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Celebrations</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <span>View Moment</span>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+
+        <!-- INTERACTIVE LUXURY RSVP PLATFORM FRAMEWORK -->
+        <section id="rsvp">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23d4af37'><path d='M50 5 L95 50 L50 95 L5 50 Z'/></svg>" class="section-ornament" alt="Ornamental Border Design">
+            <h2 class="section-title">Join Our Union</h2>
+            <div class="section-subtitle">Kindly Grace Our Celebrations</div>
+
+            <div class="rsvp-form-container reveal-on-scroll">
+                <form id="wedding-rsvp-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="guest-name" class="form-input" placeholder=" " required>
+                        <label for="guest-name" class="form-label">Your Honorable Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" id="guest-count" class="form-input" placeholder=" " min="1" max="10" required>
+                        <label for="guest-count" class="form-label">Number of Esteemed Guests</label>
+                    </div>
+					
+					<div class="form-group">
+                        <input type="text" id="guest-blessing" class="form-input" placeholder=" " required>
+                        <label for="guest-blessing" class="form-label">Share Your Blessings</label>
+                    </div>
+					 
+
+                    <div class="form-group">
+                        <label style="display:block; font-size:0.85rem; color:var(--gold-primary); margin-bottom:8px; letter-spacing:1px; text-transform:uppercase;">
+                            Will you honor us with your presence?
+                        </label>
+                        <div class="form-radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="Yes" checked> Joyfully Accepting
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attendance" value="No"> Regretfully Declining
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-rsvp">Send Digital Blessings</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- TRADITIONAL PREMIUM FOOTER -->
+        <footer>
+            
+            <div class="footer-blessing">WITH LOVE❤️</div>
+			<div class="footer-hashtag" id="footer-hashtag-display"></div>
+			<!-- Couple Monogram -->
+<div style="margin-bottom:25px;">
+<img
+src="monogram.jpg"
+alt="Vinay Nandini Monogram"
+style="
+width:180px;
+max-width:60vw;
+background:#ffffff;
+padding:12px;
+border:4px solid #d4af37;
+border-radius:18px;
+box-shadow:
+0 0 10px rgba(212,175,55,0.4),
+0 0 25px rgba(212,175,55,0.25);
+"
+>
+</div>
+		
+            <!--<p style="font-size: 0.85rem; color: rgba(199, 189, 168, 0.5); font-family: var(--font-body); letter-spacing: 1px;">
+                © 2026 The Luxury Wedding Experience. Handcrafted with Divine Reverence.
+            </p-->
+        </footer>
+
+    </div>
+
+    <!-- Lightbox Modal for Gallery Framework Presentation -->
+    <div class="lightbox" id="gallery-lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" id="lightbox-text">Moment View</div>
+    </div>
+
+    <!-- AUDIO DRIVER ELEMENT -->
+    <audio id="bg-ambient-audio" loop preload="auto">
+        <source id="audio-source-element" type="audio/mpeg">
+    </audio>
+
+    <!-- PREMIUM ENGINE / CONFIGURATION AND MOTION ANIMATION ARCHITECTURE -->
+    <script>
+        // MANDATORY EXPERIENTIAL CONFIGURATION OBJECT
+        const weddingDetails = {
+            groomName: "Vinay",
+            brideName: "Nandini",
+            weddingDate: "2026-11-21", 
+            venueName: "Amarawati Bhawan, ",
+            venueAddress: "Govind Nagar Colony, Narottampur, Tadia, Near Dafi, Varanasi, UP, 221011",
+            whatsappNumber: "7579925675",
+            musicFile: "music.mp3", // Premium fallback audio stream URL asset
+            hashtag: "#VinayWedsNandini"
+        };
+
+        // Initialize Dynamic Micro-content mappings from configuration
+        document.addEventListener("DOMContentLoaded", () => {
+            // Preloader Initializer Mapping
+            document.getElementById("load-groom-name").innerText = weddingDetails.groomName;
+            document.getElementById("load-bride-name").innerText = weddingDetails.brideName;
+            
+            // Hero Platform Mappings
+            document.getElementById("hero-groom").innerText = weddingDetails.groomName;
+            document.getElementById("hero-bride").innerText = weddingDetails.brideName;
+            document.getElementById("hero-venue").innerText = weddingDetails.venueName;
+            
+            // Formatting readable luxury date
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateObj = new Date(weddingDetails.weddingDate);
+            document.getElementById("hero-date").innerText = dateObj.toLocaleDateString("en-IN", options);
+            
+            // Ceremony details card mappings
+            document.getElementById("card-venue-details").innerHTML = `<strong>${weddingDetails.venueName}</strong><br>${weddingDetails.venueAddress}`;
+            document.getElementById("btn-map-directions").href ="https://maps.app.goo.gl/e9rSb7b2nEbCzLA4A";
+            
+            // Footer setup
+            document.getElementById("footer-hashtag-display").innerText = weddingDetails.hashtag;
+
+            // Audio configuration binding
+            document.getElementById("audio-source-element").src = weddingDetails.musicFile;
+            document.getElementById("bg-ambient-audio").load();
+
+            // Run Cinematic Opening Phase sequence animations
+            runCinematicOpeningSequence();
+            
+            // Activate High Performance Particle Rendering Canvas System
+            initParticleSystem();
+
+            // Fire up structural scroll reveal observer systems
+            initScrollRevealObserver();
+
+            // Launch countdown calculations engine
+            initCountdownEngine();
+        });
+
+        // 1. CINEMATIC OPENING PHASE SEQUENCER ENGINE
+        function runCinematicOpeningSequence() {
+            const mantra = document.getElementById("preloader-mantra");
+            const ganesh = document.getElementById("preloader-ganesh");
+            const card = document.getElementById("preloader-card");
+            const btn = document.getElementById("btn-explore");
+
+            setTimeout(() => {
+                mantra.style.opacity = "1";
+                mantra.style.transform = "translateY(0)";
+            }, 500);
+
+            setTimeout(() => {
+                ganesh.style.opacity = "1";
+                ganesh.style.transform = "scale(1) rotateY(0deg)";
+            }, 1800);
+
+            setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0) rotateX(0deg)";
+            }, 3000);
+
+            setTimeout(() => {
+                btn.style.opacity = "1";
+                btn.style.transform = "translateY(0)";
+            }, 4200);
+
+            // Bind click handler execution flow for transition reveal action
+            btn.addEventListener("click", () => {
+                // Try playing ambient tracks automatically on interaction
+                const audio = document.getElementById("bg-ambient-audio");
+                audio.play().then(() => {
+                    document.querySelector(".audio-pulse").style.opacity = "1";
+                }).catch(err => console.log("Audio autoplay protected. User manual interaction fallback initialized."));
+
+                // Animate out preloader completely
+                const preloader = document.getElementById("preloader");
+                preloader.style.transition = "all 1.2s cubic-bezier(0.7, 0, 0.3, 1)";
+                preloader.style.opacity = "0";
+                preloader.style.transform = "translateY(-100vh)";
+                
+                // Reveal main interactive layer surface architectures
+                document.body.classList.remove("loading");
+                const mainContent = document.getElementById("main-content");
+                mainContent.classList.add("visible");
+
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 1200);
+            });
+        }
+
+        // 2. HIGH PERFORMANCE PARTICLE RENDERING FRAMEWORK (Independent Animation Layers)
+        function initParticleSystem() {
+            const canvas = document.getElementById("bg-canvas");
+            const ctx = canvas.getContext("2d");
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener("resize", resizeCanvas);
+            resizeCanvas();
+
+            // Particle Object Pools definitions
+            const particles = [];
+            const particleCount = 65;
+
+            class KashiAestheticParticle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 100;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedY = -(Math.random() * 0.8 + 0.3);
+                    this.speedX = Math.sin(Math.random() * 2) * 0.3;
+                    // Aesthetic Color variants shifting across gold, dawn-orange, and ambient light tones
+                    const colors = ["#d4af37", "#f3e5ab", "#e65c00", "#f9d423"];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.5 + 0.3;
+                    this.oscillationSpeed = Math.random() * 0.02 + 0.005;
+                    this.oscillationRadius = Math.random() * 15;
+                    this.angle = Math.random() * Math.PI * 2;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.angle += this.oscillationSpeed;
+                    this.x += this.speedX + Math.sin(this.angle) * 0.2;
+
+                    // Recycle out of bounds particles smoothly to optimize loops
+                    if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new KashiAestheticParticle());
+            }
+
+            function animationLoop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw independent interactive multi-layered particle system loop
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                
+                requestAnimationFrame(animationLoop);
+            }
+            requestAnimationFrame(animationLoop);
+        }
+
+        // 3. INTERSECTION OBSERVER SCROLL REVEAL MANAGER
+        function initScrollRevealObserver() {
+            const revealElements = document.querySelectorAll(".reveal-on-scroll");
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Ensure single reveal animation flow to guarantee luxury feel
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        // 4. PRECISION COUNTDOWN TIMING ENGINE
+        function initCountdownEngine() {
+            const targetDate = new Date(`${weddingDetails.weddingDate}T00:00:00`).getTime();
+
+            function updateTime() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference <= 0) {
+                    document.querySelector(".countdown-container").innerHTML = "<p style='font-family:var(--font-serif); font-size:1.5rem; color:var(--gold-primary);'>The Celestial Union Has Commenced</p>";
+                    return;
+                }
+
+                const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(d).padStart(2, '0');
+                document.getElementById("hours").innerText = String(h).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(m).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+            }
+
+            updateTime();
+            setInterval(updateTime, 1000);
+        }
+
+        // 5. MANUAL AUDIO CONTROLLER CAPABILITY
+        const audioBtn = document.getElementById("audio-toggle-btn");
+        const globalAudio = document.getElementById("bg-ambient-audio");
+        const pulseRing = document.querySelector(".audio-pulse");
+
+        audioBtn.addEventListener("click", () => {
+            if (globalAudio.paused) {
+                globalAudio.play();
+                pulseRing.style.opacity = "1";
+                audioBtn.style.color = "var(--gold-primary)";
+            } else {
+                globalAudio.pause();
+                pulseRing.style.opacity = "0";
+                audioBtn.style.color = "var(--text-muted)";
+            }
+        });
+
+        // 6. CINEMATIC GALLERY LIGHTBOX DRIVER UTILITIES
+        function openLightbox(momentName) {
+            const lb = document.getElementById("gallery-lightbox");
+            const txt = document.getElementById("lightbox-text");
+            txt.innerHTML = `<i class="fa-solid fa-gopuram" style="font-size:3rem; display:block; margin-bottom:1.5rem; color:var(--gold-primary);"></i>${momentName}<br><span style="font-size:1rem; font-family:var(--font-body); color:var(--text-muted); display:block; margin-top:1rem;">Premium Experience Asset Frame</span>`;
+            lb.classList.add("active");
+        }
+
+        function closeLightbox() {
+            document.getElementById("gallery-lightbox").classList.remove("active");
+        }
+
+        // 7. LUXURY AUTOMATED FORM SUBMIT & WHATSAPP ACTION FLOW GENERATOR
+        function handleFormSubmit(e) {
+e.preventDefault();
+ 
+const name = document.getElementById("guest-name").value;
+const count = document.getElementById("guest-count").value;
+const blessing = document.getElementById("guest-blessing").value;
+const attendance = document.querySelector(
+'input[name="attendance"\]:checked'
+).value;
+ 
+const textMessage =
+`✨ *Blessings and RSVP for Vinay ❤️ Nandini* ✨\n\n` +
+`*Guest Name:* ${name}\n` +
+`*Total Guests:* ${count}\n` +
+`*Guest Blessing:* ${blessing}\n` +
+`*Attending:* ${attendance}\n\n` +
+`🌸 Sent from the Official Vinay & Nandini Wedding Website 🌸`;
+ 
+const targetUrl =
+`https://api.whatsapp.com/send?phone=${weddingDetails.whatsappNumber}&text=${encodeURIComponent(textMessage)}`;
+ 
+window.open(targetUrl, "_blank");
+}
+    </script>
+</body>
+</html>
